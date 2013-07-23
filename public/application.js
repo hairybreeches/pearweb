@@ -18,12 +18,26 @@ var our = (function () {
 
     ret.onButtonClick = function () {
 
-        var script   = document.createElement("script");
-        script.type  = "text/javascript";
-        script.text  = editor.getSession().getValue();
 
-        var theFrame = document.getElementById("executionFrame").contentWindow; // alternatively: window.frames[0]
-        theFrame.document.body.appendChild(script);
+
+        var container = document.getElementById("executionContainer");
+
+        var id = "executionFrame";
+
+        var oldFrame = document.getElementById(id);
+        if (oldFrame) {
+            container.removeChild(oldFrame);
+        }
+
+        var newFrame = document.createElement("iframe");
+        newFrame.id = id;
+        container.appendChild(newFrame);
+
+
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.text = editor.getSession().getValue();
+        newFrame.contentWindow.document.body.appendChild(script);
     };
 
 
