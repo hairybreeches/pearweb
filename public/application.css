@@ -2,3 +2,7 @@
     width: 48em;
     height: 100%;
 }
+
+button , #executionFrame {
+    float: right;
+}
