@@ -19,7 +19,6 @@ var our = (function () {
     ret.onButtonClick = function () {
 
 
-
         var container = document.getElementById("executionContainer");
 
         var id = "executionFrame";
@@ -33,11 +32,12 @@ var our = (function () {
         newFrame.id = id;
         container.appendChild(newFrame);
 
-
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.text = editor.getSession().getValue();
-        newFrame.contentWindow.document.body.appendChild(script);
+        newFrame.onload = function () {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.text = editor.getSession().getValue();
+            newFrame.contentWindow.document.body.appendChild(script);
+        };
     };
 
 
