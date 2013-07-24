@@ -32,10 +32,8 @@ var our = (function () {
         newFrame.id = id;
 
         newFrame.onload = function () {
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.text = editor.getSession().getValue();
-            newFrame.contentWindow.document.body.appendChild(script);
+            var text = 'debugger;\n\n' + editor.getSession().getValue();
+            newFrame.contentWindow.eval(text);
         };
 
         container.appendChild(newFrame);
