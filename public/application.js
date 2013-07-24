@@ -62,6 +62,15 @@ var our = (function () {
         callback();
     };
 
+    Function.prototype.curry = function () {
+        var slice = Array.prototype.slice,
+            args = slice.apply(arguments),
+            that = this;
+        return function () {
+            return that.apply(null, args.concat(slice.apply(arguments)));
+        };
+    };
+
     var dispatch = function (values) {
         values[0](function () { dispatch(values.slice(1)); });
     };
@@ -93,11 +102,11 @@ var our = (function () {
             var frameWindow = newFrame.contentWindow;
             var body = frameWindow.document.body;
             dispatch([
-                function(callback) { injectCssSrc(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.css", callback); },
-                function(callback) { injectScriptSrc(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.js", callback); },
-                function(callback) { injectEval(frameWindow, text, callback); },
-                function(callback) { injectScriptSrc(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine-html.js", callback); },
-                function(callback) { injectScriptText(body, "(function () { var env = jasmine.getEnv(); env.addReporter(new jasmine.HtmlReporter()); env.execute(); })();", callback); }
+                injectCssSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.css"),
+                injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.js"),
+                injectEval.curry(frameWindow, text),
+                injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine-html.js"),
+                injectScriptText.curry(body, "(function () { var env = jasmine.getEnv(); env.addReporter(new jasmine.HtmlReporter()); env.execute(); })();")
             ]);
         };
 
