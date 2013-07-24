@@ -10,7 +10,7 @@ var our = (function () {
 
     var initialiseTowTruck = function () {
         TowTruck();
-    }
+    };
 
     initialiseSyntaxHighlighting();
     initialiseTowTruck();
