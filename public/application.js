@@ -71,10 +71,6 @@ var our = (function () {
         };
     };
 
-    var dispatch = function (values) {
-        values[0](function () { dispatch(values.slice(1)); });
-    };
-
 
     ret.onButtonClick = function () {
 
@@ -101,13 +97,12 @@ var our = (function () {
 
             var frameWindow = newFrame.contentWindow;
             var body = frameWindow.document.body;
-            dispatch([
-                injectCssSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.css"),
-                injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.js"),
-                injectEval.curry(frameWindow, text),
-                injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine-html.js"),
-                injectScriptText.curry(body, "(function () { var env = jasmine.getEnv(); env.addReporter(new jasmine.HtmlReporter()); env.execute(); })();")
-            ]);
+                   injectCssSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.css")
+            .curry(injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.js")
+            .curry(injectEval.curry(frameWindow, text)
+            .curry(injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine-html.js")
+            .curry(injectScriptText.curry(body, "(function () { var env = jasmine.getEnv(); env.addReporter(new jasmine.HtmlReporter()); env.execute(); })();")
+            ))))();
         };
 
         container.appendChild(newFrame);
