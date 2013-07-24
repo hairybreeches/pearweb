@@ -30,7 +30,6 @@ var our = (function () {
 
         var newFrame = document.createElement("iframe");
         newFrame.id = id;
-        container.appendChild(newFrame);
 
         newFrame.onload = function () {
             var script = document.createElement("script");
@@ -38,6 +37,10 @@ var our = (function () {
             script.text = editor.getSession().getValue();
             newFrame.contentWindow.document.body.appendChild(script);
         };
+
+        container.appendChild(newFrame);
+
+
     };
 
 
