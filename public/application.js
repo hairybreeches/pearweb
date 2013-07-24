@@ -92,6 +92,7 @@ var our = (function () {
             {
                 text += '\n\n' + editors[i].getSession().getValue();
             }
+            const runUnitTestsAndDisplayResultsCode = "(function () { var env = jasmine.getEnv(); env.addReporter(new jasmine.HtmlReporter()); env.execute(); })();";
 
 
             var frameWindow = newFrame.contentWindow;
@@ -100,7 +101,7 @@ var our = (function () {
                 injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine.js",
                     injectEval.curry(frameWindow, text,
                         injectScriptSrc.curry(body, "http://cdn.jsdelivr.net/jasmine/1.3.1/jasmine-html.js",
-                            injectScriptText.curry(body, "(function () { var env = jasmine.getEnv(); env.addReporter(new jasmine.HtmlReporter()); env.execute(); })();")
+                            injectScriptText.curry(body, runUnitTestsAndDisplayResultsCode)
                         ))));
         };
 
