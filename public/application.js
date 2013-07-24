@@ -1,11 +1,15 @@
 var our = (function () {
     var ret = {};
 
-    var editor = ace.edit("editor");
+    var editors = [];
 
     var initialiseSyntaxHighlighting = function () {
-        editor.setTheme("ace/theme/monokai");
-        editor.getSession().setMode("ace/mode/javascript");
+        $(".editor").each(function () {
+            var editor = ace.edit(this);
+            editor.setTheme("ace/theme/monokai");
+            editor.getSession().setMode("ace/mode/javascript");
+            editors.push(editor);
+        });
     };
 
     var initialiseTowTruck = function () {
@@ -32,7 +36,11 @@ var our = (function () {
         newFrame.id = id;
 
         newFrame.onload = function () {
-            var text = 'debugger;\n\n' + editor.getSession().getValue();
+            var text = 'debugger;';
+            for (var i in editors)
+            {
+                text += '\n\n' + editors[i].getSession().getValue();
+            }
             newFrame.contentWindow.eval(text);
         };
 
