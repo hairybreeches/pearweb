@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+    <link media="all" rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link media="all" rel="stylesheet" type="text/css" href="/application.css" />
     <title>Boom!</title>
 </head>
 <body>
 
-<div class="editor">
-    alert("It works!");
+<div class="tabs">
+    <ul>
+        <li><a href="#tabs-1">Code</a></li>
+        <li><a href="#tabs-2">Tests</a></li>
+    </ul>
+    <div id="tabs-1">
+        <div class="editor">
+            alert("Executin' code!");
+        </div>
+    </div>
+    <div id="tabs-2">
+        <div class="editor">
+            alert("Executin' tests!");
+        </div>
+    </div>
 </div>
 
 <div id="executionContainer">
@@ -16,6 +30,7 @@
 <button onclick="our.onButtonClick()">Go</button>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript" src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js"></script>
 <script type="text/javascript" src="https://towtruck.mozillalabs.com/towtruck.js" ></script>
 <script type="text/javascript" src="/application.js" ></script>

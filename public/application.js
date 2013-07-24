@@ -3,6 +3,10 @@ var our = (function () {
 
     var editors = [];
 
+    var initialiseTabs = function () {
+        $(".tabs").tabs();
+    };
+
     var initialiseSyntaxHighlighting = function () {
         $(".editor").each(function () {
             var editor = ace.edit(this);
@@ -16,6 +20,7 @@ var our = (function () {
         TowTruck();
     };
 
+    initialiseTabs();
     initialiseSyntaxHighlighting();
     initialiseTowTruck();
 
