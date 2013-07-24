@@ -49,11 +49,10 @@ var our = (function () {
         });
     };
 
-    var injectScriptText = function (parentElement, value, callback) {
+    var injectScriptText = function (parentElement, value) {
         createElement(parentElement, "script", {
             type: "text/javascript",
-            text: value,
-            onload: callback
+            text: value
         });
     };
 
