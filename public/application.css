@@ -3,7 +3,7 @@
  */
 
 
-html , body {
+html, body, .tab-pane, .executionFrame {
     height: 100%;
 }
 
@@ -26,6 +26,7 @@ html , body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding-top: 38px;
+    overflow: hidden;
 }
 
 .editor {
@@ -35,4 +36,16 @@ html , body {
 
 .executionFrame {
     width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.tools-row {
+    height: 38px;
+    position: absolute;
+}
+
+.tools-row label {
+    display: inline;
 }

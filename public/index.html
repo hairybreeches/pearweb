@@ -258,11 +258,12 @@ describe("validateSerialNumberTests", function () {
     </ul>
     <div class="tab-content">
     <div class="tab-pane active" id="tabs-3">
-        <button onclick="our.onButtonClick()">Go</button>
-
-        <input type="checkbox" id="debug" /><label for="debug">Debug</label>
-
-        <div id="executionContainer">
+        <div class="tools-row">
+            <button class="btn btn-primary" onclick="our.onButtonClick()">Go</button>
+            <input type="checkbox" id="debug" />
+            <label for="debug">Debug</label>
+        </div>
+        <div id="executionContainer" class="tab-content">
         </div>
     </div>
     </div>
