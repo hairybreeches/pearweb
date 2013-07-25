@@ -1,5 +1,10 @@
-.tabs {
-    height: 22.75em;
+/* http://www.gtinnovations.com.au/assets/Promethean-2012/Projector-Manuals/Promethean-EST-P1-20120203-GT.pdf
+ * Resolution: 1280 x 800
+ */
+
+
+.half-height {
+    height: 38em;
 }
 
 .editor {

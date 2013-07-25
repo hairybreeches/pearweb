@@ -4,7 +4,10 @@ var our = (function () {
     var editors = [];
 
     var initialiseTabs = function () {
-        $(".tabs").tabs();
+        $(".nav-tabs a").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
     };
 
     var initialiseSyntaxHighlighting = function () {
