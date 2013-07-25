@@ -88,6 +88,7 @@ var our = (function () {
 
         var newFrame = document.createElement("iframe");
         newFrame.id = id;
+        newFrame.className = "executionFrame";
 
         newFrame.onload = function () {
             var text = $("#debug").prop("checked") ? "debugger;" : "";
