@@ -20,11 +20,6 @@ html, body, .tab-pane {
 }
 
 .tab-content {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     padding-top: 38px;
     overflow: hidden;
 }
@@ -34,7 +29,7 @@ html, body, .tab-pane {
     height: 28em;
 }
 
-.executionFrame {
+.full-size {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
