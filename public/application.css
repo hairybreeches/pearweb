@@ -3,8 +3,12 @@
  */
 
 
+html , body {
+    height: 100%;
+}
+
 .half-height {
-    height: 38em;
+    height: 50%;
 }
 
 .editor {
