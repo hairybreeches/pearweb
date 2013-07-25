@@ -87,7 +87,7 @@ var our = (function () {
         newFrame.id = id;
 
         newFrame.onload = function () {
-            var text = '';
+            var text = $("#debug").prop("checked") ? "debugger;" : "";
             for (var i in editors)
             {
                 text += '\n\n' + editors[i].getSession().getValue();
