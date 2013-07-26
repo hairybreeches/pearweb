@@ -19,12 +19,28 @@ var our = (function () {
         });
     };
 
+    var initialiseGitHub = function () {
+        var gitHub = new Github({
+            username: "DavidSimnerRG",
+            password: "changeme"
+        });
+        var repo = gitHub.getRepo("red-gate", "davidsimner-downtoools");
+        var branch = repo.getDefaultBranch();
+        branch.read('code.js', false).done(function (contents) {
+            editors[0].getSession().setValue(contents.content);
+        });
+        branch.read('tests.js', false).done(function (contents) {
+            editors[1].getSession().setValue(contents.content);
+        });
+    };
+
     var initialiseTowTruck = function () {
         TowTruck();
     };
 
     initialiseTabs();
     initialiseSyntaxHighlighting();
+    initialiseGitHub();
     initialiseTowTruck();
 
 
