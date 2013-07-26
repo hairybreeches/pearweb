@@ -90,7 +90,7 @@ var our = (function () {
     };
 
 
-    ret.onButtonClick = function () {
+    ret.onGo = function () {
 
 
         var container = document.getElementById("executionContainer");
