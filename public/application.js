@@ -36,6 +36,35 @@ var our = (function () {
     };
 
     var initialiseTowTruck = function () {
+        var fromRemote = false;
+
+        TowTruckConfig_on_ready = function () {
+            $(".nav-tabs a").on('shown', function (e) {
+                if (fromRemote) {
+                    return;
+                }
+
+                var elementFinder = TowTruck.require("elementFinder");
+                var location = elementFinder.elementLocation(e.target);
+                TowTruck.send({type: "tabShown", element: location});
+            });
+        };
+
+        TowTruck.hub.on("tabShown", function (msg) {
+            if (! msg.sameUrl) {
+                return;
+            }
+
+            var elementFinder = TowTruck.require("elementFinder");
+            var element = elementFinder.findElement(msg.element);
+            fromRemote = true;
+            try {
+                $(element).tab('show');
+            } finally {
+                fromRemote = false;
+            }
+        });
+
         TowTruck();
     };
 
