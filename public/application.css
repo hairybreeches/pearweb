@@ -38,6 +38,7 @@ html, body, .tab-pane {
 .tools-row {
     height: 38px;
     position: absolute;
+    z-index: 1;
 }
 
 .tools-row label {

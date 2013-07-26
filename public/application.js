@@ -2,6 +2,7 @@ var our = (function () {
     var ret = {};
 
     var editors = [];
+    var branch;
 
     var initialiseTabs = function () {
         $(".nav-tabs a").click(function (e) {
@@ -25,7 +26,7 @@ var our = (function () {
             password: "changeme"
         });
         var repo = gitHub.getRepo("red-gate", "davidsimner-downtoools");
-        var branch = repo.getDefaultBranch();
+        branch = repo.getDefaultBranch();
         branch.read('code.js', false).done(function (contents) {
             editors[0].getSession().setValue(contents.content);
         });
@@ -89,6 +90,9 @@ var our = (function () {
         };
     };
 
+    ret.onSave = function (index) {
+        branch.write(index == 0 ? 'code.js' : 'tests.js', editors[index].getSession().getValue(), "TODO: commit message", false);
+    };
 
     ret.onGo = function () {
 
