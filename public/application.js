@@ -48,6 +48,19 @@ var our = (function () {
                 var location = elementFinder.elementLocation(e.target);
                 TowTruck.send({type: "tabShown", element: location});
             });
+
+            for (var i in editors)
+            {
+                (function (i) {
+                    editors[i].getSession().on("changeScrollTop", function (value) {
+                        if (fromRemote || !(!isNaN(parseFloat(value)) && isFinite(value))) {
+                            return;
+                        }
+
+                        TowTruck.send({type: "scrollTop", editor: i, value: value});
+                    });
+                })(i);
+            }
         };
 
         TowTruck.hub.on("tabShown", function (msg) {
@@ -60,6 +73,19 @@ var our = (function () {
             fromRemote = true;
             try {
                 $(element).tab('show');
+            } finally {
+                fromRemote = false;
+            }
+        });
+
+        TowTruck.hub.on("scrollTop", function (msg) {
+            if (! msg.sameUrl) {
+                return;
+            }
+
+            fromRemote = true;
+            try {
+                editors[msg.editor].getSession().setScrollTop(msg.value);
             } finally {
                 fromRemote = false;
             }
